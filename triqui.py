@@ -6,6 +6,8 @@ TABLERO_2 = [
 ["", "", ""], ["", "", ""],["", "", ""]
 ]
 
+JUGADORES = {'jugador1': True, 'jugador2': False}
+
 class Triqui():
 
     def __init__(self):
@@ -16,18 +18,18 @@ class Triqui():
         jugar = True
 
         while(jugar):
-            jugadores = {'jugador1': True, 'jugador2': False}
 
-            print(jugadores['jugador1'], jugadores['jugador2'])
 
-            if jugadores['jugador1']:
-                self.jugador1();
-                jugadores['jugador1'] = False;
-                jugadores['jugador2'] = True;
-            elif jugadores['jugador2']:
-                self.jugador2();
-                jugadores['jugador1'] = True;
-                jugadores['jugador2'] = False;
+            print(JUGADORES['jugador1'], JUGADORES['jugador2'])
+
+            if JUGADORES['jugador1']:
+                self.jugador1()
+                JUGADORES['jugador1'] = False
+                JUGADORES['jugador2'] = True
+            elif JUGADORES['jugador2']:
+                self.jugador2()
+                JUGADORES['jugador1'] = True
+                JUGADORES['jugador2'] = False
 
 
     def jugador1(self):
@@ -43,7 +45,7 @@ class Triqui():
 
         TABLERO_2[i][j]="X"
 
-        if (self.comprobarTriqui(1)):
+        if (self.comprobarTriqui()):
             print "Triqui del jugador 1"
             jugar = False
         else:
@@ -74,7 +76,7 @@ class Triqui():
         else:
             return False
 
-    def comprobarTriqui(self,jugador):
+    def comprobarTriqui(self):
         #Primera coordenada en X, segunda coordenada en Y
         #Diagonal I-D
         if TABLERO_2[0][0]==TABLERO_2[1][1]==TABLERO_2[2][2]=="X" or TABLERO_2[0][0]==TABLERO_2[1][1]==TABLERO_2[2][2]=="O":
