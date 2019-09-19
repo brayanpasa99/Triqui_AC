@@ -24,8 +24,6 @@ class Triqui():
             for i in TABLERO_2:
                 print i
 
-            print (self.turnosJugados)
-
             if self.turnosJugados==9 and self.jugar is True:
                 print "Se declara empate.."
                 self.jugar=False
