@@ -10,17 +10,15 @@ JUGADORES = {'jugador1': True, 'jugador2': False}
 
 class Triqui():
 
+    jugar = True
+
     def __init__(self):
         pass
 
     def iniciarJuego(self):
 
-        jugar = True
-
-        while(jugar):
-
-
-            print(JUGADORES['jugador1'], JUGADORES['jugador2'])
+        while(self.jugar):
+            print(TABLERO_2)
 
             if JUGADORES['jugador1']:
                 self.jugador1()
@@ -46,8 +44,8 @@ class Triqui():
         TABLERO_2[i][j]="X"
 
         if (self.comprobarTriqui()):
-            print "Triqui del jugador 1"
-            jugar = False
+            print "Triqui del jugador "+self.comprobarTriqui()[1]
+            self.jugar = False
         else:
             pass
 
@@ -56,7 +54,7 @@ class Triqui():
         i = input("Fila: ")
         j = input("Columna: ")
 
-        while (self.comprobarMatriz(i,j)):
+        while not (self.comprobarMatriz(i,j)):
             print "Posicion ocupada..."
             print "Jugador 2: Inserte la coordenada donde desea poner O"
             i = input("Fila: ")
@@ -64,9 +62,9 @@ class Triqui():
 
         TABLERO_2[i][j]="O"
 
-        if (self.comprobarTriqui(2)):
-            print "Triqui del jugador 1"
-            jugar = False
+        if (self.comprobarTriqui()):
+            print "Triqui del jugador "+self.comprobarTriqui()[1]
+            self.jugar = False
         else:
             pass
 
@@ -79,25 +77,25 @@ class Triqui():
     def comprobarTriqui(self):
         #Primera coordenada en X, segunda coordenada en Y
         #Diagonal I-D
-        if TABLERO_2[0][0]==TABLERO_2[1][1]==TABLERO_2[2][2]=="X" or TABLERO_2[0][0]==TABLERO_2[1][1]==TABLERO_2[2][2]=="O":
-            return True
+        if (TABLERO_2[0][0]=="X" and TABLERO_2[1][1]=="X" and TABLERO_2[2][2]=="X") or (TABLERO_2[0][0]=="O" and TABLERO_2[1][1]=="O" and TABLERO_2[2][2]=="O"):
+            return [True, TABLERO_2[0][0]]
         #Diagonal D-I
-        elif TABLERO_2[0][2]==TABLERO_2[1][1]==TABLERO_2[2][0]=="X" or TABLERO_2[0][2]==TABLERO_2[1][1]==TABLERO_2[2][0]=="O":
-            return True
+        elif (TABLERO_2[0][2]=="X" and TABLERO_2[1][1]=="X" and TABLERO_2[2][0]=="X") or (TABLERO_2[0][2]=="O" and TABLERO_2[1][1]=="O" and TABLERO_2[2][0]=="O"):
+            return [True, TABLERO_2[0][2]]
         #Columnas
-        elif TABLERO_2[0][0]==TABLERO_2[0][1]==TABLERO_2[0][2]=="X" or TABLERO_2[0][0]==TABLERO_2[0][1]==TABLERO_2[0][2]=="O" :
-            return True
-        elif TABLERO_2[1][0]==TABLERO_2[1][1]==TABLERO_2[1][2]=="X" or TABLERO_2[1][0]==TABLERO_2[1][1]==TABLERO_2[1][2]=="O":
-            return True
-        elif TABLERO_2[2][0]==TABLERO_2[2][1]==TABLERO_2[2][2]=="X" or TABLERO_2[2][0]==TABLERO_2[2][1]==TABLERO_2[2][2]=="O":
-            return True
+        elif (TABLERO_2[0][0]=="X" and TABLERO_2[0][1]=="X" and TABLERO_2[0][2]=="X") or (TABLERO_2[0][0]=="O" and TABLERO_2[0][1]=="O" and TABLERO_2[0][2]=="O"):
+            return [True, TABLERO_2[0][0]]
+        elif (TABLERO_2[1][0]=="X" and TABLERO_2[1][1]=="X" and TABLERO_2[1][2]=="X") or (TABLERO_2[1][0]=="O" and TABLERO_2[1][1]=="O" and TABLERO_2[1][2]=="O"):
+            return [True, TABLERO_2[1][0]]
+        elif (TABLERO_2[2][0]=="X" and TABLERO_2[2][1]=="X" and TABLERO_2[2][2]=="X") or (TABLERO_2[2][0]=="O" and TABLERO_2[2][1]=="O" and TABLERO_2[2][2]=="O"):
+            return [True, TABLERO_2[2][0]]
         #Filas
-        elif TABLERO_2[0][0]==TABLERO_2[1][0]==TABLERO_2[2][0]=="X" or TABLERO_2[0][0]==TABLERO_2[1][0]==TABLERO_2[2][0]=="O":
-            return True
-        elif TABLERO_2[0][1]==TABLERO_2[1][1]==TABLERO_2[2][1]=="X" or TABLERO_2[0][1]==TABLERO_2[1][1]==TABLERO_2[2][1]=="O":
-            return True
-        elif TABLERO_2[0][2]==TABLERO_2[1][2]==TABLERO_2[2][2]=="X" or TABLERO_2[0][1]==TABLERO_2[1][1]==TABLERO_2[2][1]=="O":
-            return True
+        elif (TABLERO_2[0][0]=="X" and TABLERO_2[1][0]=="X" and TABLERO_2[2][0]=="X") or (TABLERO_2[0][0]=="O" and TABLERO_2[1][0]=="O" and TABLERO_2[2][0]=="O"):
+            return [True, TABLERO_2[0][0]]
+        elif (TABLERO_2[0][1]=="X" and TABLERO_2[1][1]=="X" and TABLERO_2[2][1]=="X") or (TABLERO_2[0][1]=="O" and TABLERO_2[1][1]=="O" and TABLERO_2[2][1]=="O"):
+            return [True, TABLERO_2[0][1]]
+        elif (TABLERO_2[0][2]=="X" and TABLERO_2[1][2]=="X" and TABLERO_2[2][2]=="X") or (TABLERO_2[0][1]=="O" and TABLERO_2[1][1]=="O" and TABLERO_2[2][1]=="O"):
+            return [True, TABLERO_2[0][2]]
         else:
             return False
 
