@@ -11,23 +11,37 @@ JUGADORES = {'jugador1': True, 'jugador2': False}
 class Triqui():
 
     jugar = True
+    turnosJugados = 0
 
     def __init__(self):
         pass
 
     def iniciarJuego(self):
 
-        while(self.jugar):
-            print(TABLERO_2)
+        print "Las filas y las columnas son: 0 (Primera fila o columna), 1 (Segunda fila o columna), 2 (Tercera fila o columna)"
 
-            if JUGADORES['jugador1']:
+        while(self.jugar):
+            for i in TABLERO_2:
+                print i
+
+            print (self.turnosJugados)
+
+            if self.turnosJugados==9 and self.jugar is True:
+                print "Se declara empate.."
+                self.jugar=False
+
+            elif JUGADORES['jugador1']:
                 self.jugador1()
+                self.turnosJugados = self.turnosJugados + 1
                 JUGADORES['jugador1'] = False
                 JUGADORES['jugador2'] = True
+
             elif JUGADORES['jugador2']:
                 self.jugador2()
+                self.turnosJugados = self.turnosJugados + 1
                 JUGADORES['jugador1'] = True
                 JUGADORES['jugador2'] = False
+
 
 
     def jugador1(self):
@@ -35,11 +49,19 @@ class Triqui():
         i = input("Fila: ")
         j = input("Columna: ")
 
+        while (i<0) or (i>2) or (j<0) or (j>2):
+            print "Posicion invalida..."
+            print "Jugador 1: Inserte la coordenada donde desea poner X"
+            i = input("Fila: ")
+            j = input("Columna: ")
+
         while not (self.comprobarMatriz(i,j)):
             print "Posicion ocupada..."
             print "Jugador 1: Inserte la coordenada donde desea poner X"
             i = input("Fila: ")
             j = input("Columna: ")
+
+
 
         TABLERO_2[i][j]="X"
 
@@ -53,6 +75,12 @@ class Triqui():
         print "Jugador 2: Inserte la coordenada donde desea poner O"
         i = input("Fila: ")
         j = input("Columna: ")
+
+        while (i < 0) or (i > 2) or (j < 0) or (j > 2):
+            print "Posicion invalida..."
+            print "Jugador 2: Inserte la coordenada donde desea poner O"
+            i = input("Fila: ")
+            j = input("Columna: ")
 
         while not (self.comprobarMatriz(i,j)):
             print "Posicion ocupada..."
